@@ -8,6 +8,6 @@ package Object;
  *
  * @author hoang
  */
-public class Manage {
+public class Book {
     
 }
