@@ -1,0 +1,21 @@
+CREATE DATABASE QLThuVien
+GO
+
+CREATE TABLE Book
+(
+    IDBook NVARCHAR(9) PRIMARY KEY NOT NULL,
+    NameBook NVARCHAR(30),
+    Descriptions NVARCHAR(1000),
+    WriterName NVARCHAR(50),
+    Amount INT
+)
+GO
+
+CREATE TABLE UserAccount
+(
+    UserName NVARCHAR(50) PRIMARY KEY NOT NULL,
+    PassWords NVARCHAR(50),
+    Roles NVARCHAR(10)
+)
+GO
+
