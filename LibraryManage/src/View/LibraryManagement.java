@@ -473,6 +473,7 @@ public class LibraryManagement extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     ArrayList<Book> arrBook = new ArrayList<>();
+    ArrayList<String> arrBookId = new ArrayList();
     // chinh lai user(neu co)
     String user = "sa";
     // chinh lai pass(neu co) 
@@ -500,6 +501,7 @@ public class LibraryManagement extends javax.swing.JFrame {
                 String description = rs.getString(4);
                 int amount = rs.getInt(5);
                 arrBook.add(new Book(id, name, author, type, description, amount));
+                arrBookId.add(id);
             }
             conn.close();
         } catch (Exception ex) {
@@ -537,7 +539,7 @@ public class LibraryManagement extends javax.swing.JFrame {
         txtAuthor.setText(book.getAuthor());
         cboType.setSelectedItem(book.getType());
         txtaDescription.setText(book.getDescription());
-        txtAmount.setText(""+(book.getAmount()));
+        txtAmount.setText("" + (book.getAmount()));
     }
 
     public void newBook() {
@@ -556,14 +558,85 @@ public class LibraryManagement extends javax.swing.JFrame {
     }
 
     private void addBook() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if (newFlag) {
+            return;
+        }
+        if (arrBookId.contains(txtID.getText())) {
+            try {
+                Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+                conn = DriverManager.getConnection(url, user, password);
+                String sql = "INSERT INTO Book values (?,?,?,?,?)";
+                PrepareStatement st = conn.prepareStatement(sql);
+                st.setString(1, txtID.getText());
+                st.setString(2, txtNameBook.getText());
+                st.setString(3, txtAuthor.getText());
+                st.setString(4, txtaDescription.getText());
+                st.setString(5, txtAmount.getText());
+                st.executeUpdate();
+                JOptionPane.showMessageDialog(this, "Thêm mới thành công!");
+                conn.close();
+                loadData();
+                newFlag = false;
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+                JOptionPane.showMessageDialog(this, "Error");
+            }
+            return;
+        }
+        JOptionPane.showMessageDialog(this, "Thông tin về sách đã tồn tại!");
     }
 
     private void delBook() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if (newFlag) {
+            return;
+        }
+        if (arrBookId.contains(txtID.getText())) {
+            try {
+                Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+                conn = DriverManager.getConnection(url, user, password);
+                String sql = "DELETE FROM Book WHERE IDBook = ?";
+                PrepareStatement st = conn.prepareStatement(sql);
+                st.setString(1, txtID.getText());
+                st.executeUpdate();
+                JOptionPane.showMessageDialog(this, "Xóa thành công!");
+                conn.close();
+                loadData();
+                newFlag = false;
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+                JOptionPane.showMessageDialog(this, "Error");
+            }
+            return;
+        }
+        JOptionPane.showMessageDialog(this, "Không tồn tại sách bạn muốn xóa!");
     }
 
     private void updateBook() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if (newFlag) {
+            return;
+        }
+        if (arrBookId.contains(txtID.getText())) {
+            try {
+                Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+                conn = DriverManager.getConnection(url, user, password);
+                String sql = "UPDATE TABLE Book SET NameBook = ?, Author = ?, Description = ?, Amount = ? WHERE IDBook = ?";
+                PrepareStatement st = conn.prepareStatement(sql);
+                st.setString(1, txtNameBook.getText());
+                st.setString(2, txtAuthor.getText());
+                st.setString(3, txtaDescription.getText());
+                st.setString(4, txtAmount.getText());
+                st.setString(5, txtID.getText());
+                st.executeUpdate();
+                JOptionPane.showMessageDialog(this, "Cập nhật thành công!");
+                conn.close();
+                loadData();
+                newFlag = false;
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+                JOptionPane.showMessageDialog(this, "Error");
+            }
+            return;
+        }
+        JOptionPane.showMessageDialog(this, "Không tồn tại sách bạn muốn cập nhật!");
     }
 }
