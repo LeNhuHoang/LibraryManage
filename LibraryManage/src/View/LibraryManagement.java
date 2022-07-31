@@ -480,6 +480,8 @@ public class LibraryManagement extends javax.swing.JFrame {
     String password = "1A@gmail.com";
     String url = "jdbc:sqlserver://localhost:1433;databaseName=QLThuVien";
 
+    Connection conn = null;
+    
     int current = 0;
     boolean newFlag = false;
 
@@ -488,7 +490,7 @@ public class LibraryManagement extends javax.swing.JFrame {
     public void loadData() {
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-            Connection conn = DriverManager.getConnection(url, user, password);
+            conn = DriverManager.getConnection(url, user, password);
             Statement st = conn.createStatement();
             String select = "SELECT * FROM Book";
             ResultSet rs = st.executeQuery(select);
@@ -566,7 +568,7 @@ public class LibraryManagement extends javax.swing.JFrame {
                 Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
                 conn = DriverManager.getConnection(url, user, password);
                 String sql = "INSERT INTO Book values (?,?,?,?,?)";
-                PrepareStatement st = conn.prepareStatement(sql);
+                PreparedStatement st = conn.prepareStatement(sql);
                 st.setString(1, txtID.getText());
                 st.setString(2, txtNameBook.getText());
                 st.setString(3, txtAuthor.getText());
@@ -595,7 +597,7 @@ public class LibraryManagement extends javax.swing.JFrame {
                 Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
                 conn = DriverManager.getConnection(url, user, password);
                 String sql = "DELETE FROM Book WHERE IDBook = ?";
-                PrepareStatement st = conn.prepareStatement(sql);
+                PreparedStatement st = conn.prepareStatement(sql);
                 st.setString(1, txtID.getText());
                 st.executeUpdate();
                 JOptionPane.showMessageDialog(this, "Xóa thành công!");
@@ -620,7 +622,7 @@ public class LibraryManagement extends javax.swing.JFrame {
                 Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
                 conn = DriverManager.getConnection(url, user, password);
                 String sql = "UPDATE TABLE Book SET NameBook = ?, Author = ?, Description = ?, Amount = ? WHERE IDBook = ?";
-                PrepareStatement st = conn.prepareStatement(sql);
+                PreparedStatement st = conn.prepareStatement(sql);
                 st.setString(1, txtNameBook.getText());
                 st.setString(2, txtAuthor.getText());
                 st.setString(3, txtaDescription.getText());
