@@ -1,12 +1,14 @@
 CREATE DATABASE QLThuVien
 GO
 
+USE QLThuVien
+
 CREATE TABLE Book
 (
     IDBook NVARCHAR(9) PRIMARY KEY NOT NULL,
     NameBook NVARCHAR(30),
+    Author NVARCHAR(30),
     Descriptions NVARCHAR(1000),
-    WriterName NVARCHAR(50),
     Amount INT
 )
 GO
@@ -19,3 +21,7 @@ CREATE TABLE UserAccount
 )
 GO
 
+INSERT INTO Book
+VALUES
+('B001', N'Đắc nhân tâm', 'DALE CARNEGIE', N'Là tác phẩm nổi tiếng nhất thế giới và có tầm ảnh hưởng mạnh mẽ nhất mọi thời đại',100)
+GO

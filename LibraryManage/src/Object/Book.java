@@ -10,21 +10,30 @@ package Object;
  */
 public class Book {
 
-    private String name, author, type;
-    private int soldAmount;
-    private String description, state;
+    private String id,name, author, type;
+    private int amount;
+    private String description;
 
     public Book(){
         
     }
     
-    public Book(String name, String author, String type, int soldAmount, String description, String state) {
+    public Book(String id,String name, String author, String type, String description, int amount) {
+        this.id = id;
         this.name = name;
         this.author = author;
         this.type = type;
-        this.soldAmount = soldAmount;
+        this.amount = amount;
         this.description = description;
-        this.state = state;
+        
+    }
+    
+    public String getID(){
+        return id;
+    }
+    
+    public void setID(String id){
+        this.id = id;
     }
 
     public String getName() {
@@ -51,12 +60,12 @@ public class Book {
         this.type = type;
     }
 
-    public int getSoldAmount() {
-        return soldAmount;
+    public int getAmount() {
+        return amount;
     }
 
-    public void setSoldAmount(int soldAmount) {
-        this.soldAmount = soldAmount;
+    public void setAmount(int amount) {
+        this.amount = amount;
     }
 
     public String getDescription() {
@@ -66,13 +75,4 @@ public class Book {
     public void setDescription(String description) {
         this.description = description;
     }
-
-    public String getState() {
-        return state;
-    }
-
-    public void setState(String state) {
-        this.state = state;
-    }
-
 }
