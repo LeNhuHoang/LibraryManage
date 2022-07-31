@@ -104,7 +104,7 @@ public class DangNhap extends javax.swing.JFrame {
                 .addComponent(chkRemember)
                 .addGap(18, 18, 18)
                 .addComponent(btnLogin)
-                .addContainerGap(98, Short.MAX_VALUE))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         pack();
