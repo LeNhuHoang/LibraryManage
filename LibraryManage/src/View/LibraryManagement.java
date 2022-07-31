@@ -560,10 +560,8 @@ public class LibraryManagement extends javax.swing.JFrame {
     }
 
     private void addBook() {
-        if (newFlag) {
-            return;
-        }
-        if (arrBookId.contains(txtID.getText())) {
+        
+        if (!arrBookId.contains(txtID.getText())) {
             try {
                 Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
                 conn = DriverManager.getConnection(url, user, password);
@@ -578,7 +576,7 @@ public class LibraryManagement extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Thêm mới thành công!");
                 conn.close();
                 loadData();
-                newFlag = false;
+                fillToTable();
             } catch (Exception e) {
                 System.out.println(e.getMessage());
                 JOptionPane.showMessageDialog(this, "Error");
@@ -589,9 +587,7 @@ public class LibraryManagement extends javax.swing.JFrame {
     }
 
     private void delBook() {
-        if (newFlag) {
-            return;
-        }
+       
         if (arrBookId.contains(txtID.getText())) {
             try {
                 Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
@@ -603,7 +599,8 @@ public class LibraryManagement extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Xóa thành công!");
                 conn.close();
                 loadData();
-                newFlag = false;
+                fillToTable();
+                newBook();
             } catch (Exception e) {
                 System.out.println(e.getMessage());
                 JOptionPane.showMessageDialog(this, "Error");
@@ -614,14 +611,12 @@ public class LibraryManagement extends javax.swing.JFrame {
     }
 
     private void updateBook() {
-        if (newFlag) {
-            return;
-        }
+        
         if (arrBookId.contains(txtID.getText())) {
             try {
                 Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
                 conn = DriverManager.getConnection(url, user, password);
-                String sql = "UPDATE TABLE Book SET NameBook = ?, Author = ?, Description = ?, Amount = ? WHERE IDBook = ?";
+                String sql = "UPDATE Book SET NameBook = ?, Author = ?, Descriptions = ?, Amount = ? WHERE IDBook = ?";
                 PreparedStatement st = conn.prepareStatement(sql);
                 st.setString(1, txtNameBook.getText());
                 st.setString(2, txtAuthor.getText());
@@ -632,7 +627,7 @@ public class LibraryManagement extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Cập nhật thành công!");
                 conn.close();
                 loadData();
-                newFlag = false;
+                fillToTable();
             } catch (Exception e) {
                 System.out.println(e.getMessage());
                 JOptionPane.showMessageDialog(this, "Error");
