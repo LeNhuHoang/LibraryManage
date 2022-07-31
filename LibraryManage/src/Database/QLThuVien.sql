@@ -25,3 +25,10 @@ INSERT INTO Book
 VALUES
 ('B001', N'Đắc nhân tâm', 'DALE CARNEGIE', N'Là tác phẩm nổi tiếng nhất thế giới và có tầm ảnh hưởng mạnh mẽ nhất mọi thời đại',100)
 GO
+
+INSERT INTO UserAccount
+VALUES
+('customer','customer','KH'),
+('staff1','123','NV')
+GO
+
