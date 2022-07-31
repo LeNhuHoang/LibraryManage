@@ -14,6 +14,10 @@ public class Book {
     private int soldAmount;
     private String description, state;
 
+    public Book(){
+        
+    }
+    
     public Book(String name, String author, String type, int soldAmount, String description, String state) {
         this.name = name;
         this.author = author;
