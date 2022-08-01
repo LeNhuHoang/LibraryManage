@@ -599,10 +599,9 @@ public class LibraryManagement extends javax.swing.JFrame {
             }
             return;
         }
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
+//<<<<<<< Updated upstream
+//
+//>>>>>>> Stashed changes
         JOptionPane.showMessageDialog(this, "Thông tin về sách đã tồn tại!");
     }
 
