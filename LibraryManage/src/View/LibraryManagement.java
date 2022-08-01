@@ -612,9 +612,6 @@ public class LibraryManagement extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, "Không tồn tại sách bạn muốn xóa!");
     }
 
-    
-    
-    
     private void updateBook() {
         
         if (arrBookId.contains(txtID.getText())) {
