@@ -4,9 +4,12 @@
  */
 package View;
 
+import Object.Account;
 import javax.swing.JOptionPane;
 
 import java.sql.*;
+import java.util.ArrayList;
+
 
 /**
  *
@@ -40,6 +43,11 @@ public class DangNhap extends javax.swing.JFrame {
         txtPassword = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Segoe Print", 1, 48)); // NOI18N
@@ -129,15 +137,41 @@ public class DangNhap extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, sb.toString());
             return;
         }
-        if(username.equals("user") && password.equals("user")) {
-            JOptionPane.showMessageDialog(this, "Đăng nhập thành công ");
-            if(chkRemember.isSelected()) {
-                JOptionPane.showMessageDialog(this, "Tài khoản của bạn đã được ghi nhớ ");
+//        if(username.equals("user") && password.equals("user")) {
+//            JOptionPane.showMessageDialog(this, "Đăng nhập thành công ");
+//            if(chkRemember.isSelected()) {
+//                JOptionPane.showMessageDialog(this, "Tài khoản của bạn đã được ghi nhớ ");
+//            }
+//            checkAccount();
+//        }else{
+//            JOptionPane.showMessageDialog(this, "Bạn đã nhập sai mật khẩu hoặc tài khoản! Mời bạn nhập lại");
+//        }
+        int i = 0;
+        for(Account acc : arrAcc){
+            if(username.equals(acc.getUserName()) && password.equals(acc.getPassword())){
+                i = 0;
+              
+            }else{
+                i = 1;
             }
+                
+        }
+        if(i == 0 ){
+            JOptionPane.showMessageDialog(this, "Đăng nhập thành công ");
+            LibraryManagement lm = new LibraryManagement();
+            lm.setVisible(true);
+            this.setVisible(false);
         }else{
             JOptionPane.showMessageDialog(this, "Bạn đã nhập sai mật khẩu hoặc tài khoản! Mời bạn nhập lại");
+            txtPassword.setText("");
+            txtUsername.setText("");
         }
     }//GEN-LAST:event_btnLoginActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:
+        loadData();
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments
@@ -187,27 +221,42 @@ public class DangNhap extends javax.swing.JFrame {
     private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
 
+    ArrayList<Account> arrAcc = new ArrayList<>();
+  
     String url = "jdbc:sqlserver://localhost:1433;databaseName=QLThuVien";
     String user = "sa";
     String password = "1A@gmail.com";
+    Connection conn = null;
+    
+    public void loadData(){
+        try {
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+            conn = DriverManager.getConnection(url, user, password);
+            Statement st = conn.createStatement();
+            String sql = "SELECT * FROM UserAccount";
+            ResultSet rs = st.executeQuery(sql);
+            arrAcc.clear();
+            while(rs.next()){
+                String userN = rs.getString(1);
+                String pass = rs.getString(2);
+                String role = rs.getString(3);
+                arrAcc.add(new Account(userN, pass, role));  
+            }
+            conn.close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        
+    }
+    
     
     public void checkAccount(){
-        try{
-            Connection conn = DriverManager.getConnection(url, user, password);
-            String select = "SELECT UserName,Passwords FROM UserAccount WHERE UserName=? and Password=?";
-            PreparedStatement st = conn.prepareStatement(url);
-            st.setString(1, txtUsername.getText());
-            st.setString(2, txtPassword.getText());
-            
-            ResultSet rt = st.executeQuery();
-            if(rt.next()){
-                dispose();
-                JOptionPane.showMessageDialog(this, "Đăng nhập thành công");
+        
+        for(Account acc : arrAcc){
+            if(txtUsername.getText().equals(acc.getUserName()) && txtPassword.getText().equals(acc.getPassword())){
+                JOptionPane.showMessageDialog(this, "Dang nhap thanh cong");
                 new LibraryManagement();
-            }
-        }catch(Exception ex){
-            ex.printStackTrace();
-            
+            }   
         }
         
     }
