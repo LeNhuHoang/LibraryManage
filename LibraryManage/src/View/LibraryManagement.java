@@ -587,6 +587,7 @@ public class LibraryManagement extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, "Thông tin về sách đã tồn tại!");
     }
 
+    
     private void delBook() {
        
         if (arrBookId.contains(txtID.getText())) {
