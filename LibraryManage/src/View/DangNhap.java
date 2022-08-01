@@ -6,6 +6,8 @@ package View;
 
 import javax.swing.JOptionPane;
 
+import java.sql.*;
+
 /**
  *
  * @author DELL
@@ -184,4 +186,29 @@ public class DangNhap extends javax.swing.JFrame {
     private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
+
+    String url = "jdbc:sqlserver://localhost:1433;databaseName=QLThuVien";
+    String user = "sa";
+    String password = "1A@gmail.com";
+    
+    public void checkAccount(){
+        try{
+            Connection conn = DriverManager.getConnection(url, user, password);
+            String select = "SELECT UserName,Passwords FROM UserAccount WHERE UserName=? and Password=?";
+            PreparedStatement st = conn.prepareStatement(url);
+            st.setString(1, txtUsername.getText());
+            st.setString(2, txtPassword.getText());
+            
+            ResultSet rt = st.executeQuery();
+            if(rt.next()){
+                dispose();
+                JOptionPane.showMessageDialog(this, "Đăng nhập thành công");
+                new LibraryManagement();
+            }
+        }catch(Exception ex){
+            ex.printStackTrace();
+            
+        }
+        
+    }
 }
