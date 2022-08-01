@@ -46,10 +46,10 @@ public class LibraryManagement extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         txtaDescription = new javax.swing.JTextArea();
         lblPicture = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        btnFirst = new javax.swing.JButton();
+        btnPrev = new javax.swing.JButton();
+        btnNext = new javax.swing.JButton();
+        btnLast = new javax.swing.JButton();
         Author1 = new javax.swing.JLabel();
         cboType = new javax.swing.JComboBox<>();
         Author2 = new javax.swing.JLabel();
@@ -128,13 +128,13 @@ public class LibraryManagement extends javax.swing.JFrame {
 
         lblPicture.setBackground(new java.awt.Color(204, 204, 204));
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icon_java/old/vidu/Button-First-icon.png"))); // NOI18N
+        btnFirst.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icon_java/old/vidu/Button-First-icon.png"))); // NOI18N
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icon_java/old/vidu/Button-Rewind-icon.png"))); // NOI18N
+        btnPrev.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icon_java/old/vidu/Button-Rewind-icon.png"))); // NOI18N
 
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icon_java/old/vidu/Button-Forward-icon.png"))); // NOI18N
+        btnNext.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icon_java/old/vidu/Button-Forward-icon.png"))); // NOI18N
 
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icon_java/old/vidu/Button-Last-icon.png"))); // NOI18N
+        btnLast.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icon_java/old/vidu/Button-Last-icon.png"))); // NOI18N
 
         Author1.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
         Author1.setForeground(new java.awt.Color(255, 153, 153));
@@ -229,13 +229,13 @@ public class LibraryManagement extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(lblPicture, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jButton1)
+                                .addComponent(btnFirst)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton2)
+                                .addComponent(btnPrev)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton3)
+                                .addComponent(btnNext)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton4))
+                                .addComponent(btnLast))
                             .addComponent(txtChange, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -248,7 +248,7 @@ public class LibraryManagement extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(36, 36, 36)))
-                .addContainerGap(7, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -292,10 +292,10 @@ public class LibraryManagement extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton2)
-                            .addComponent(jButton3)
-                            .addComponent(jButton1)
-                            .addComponent(jButton4))
+                            .addComponent(btnPrev)
+                            .addComponent(btnNext)
+                            .addComponent(btnFirst)
+                            .addComponent(btnLast))
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                             .addComponent(Author2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(2, 2, 2)))
@@ -315,15 +315,20 @@ public class LibraryManagement extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Name", "Author", "Type", "Description", "Amount"
+                "ID", "Name", "Author", "Type", "Description", "Amount"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, true, true
+                false, false, false, true, true, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
+            }
+        });
+        tblInfoBook.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblInfoBookMouseClicked(evt);
             }
         });
         jScrollPane2.setViewportView(tblInfoBook);
@@ -400,6 +405,12 @@ public class LibraryManagement extends javax.swing.JFrame {
         exit();
     }//GEN-LAST:event_btnExitActionPerformed
 
+    private void tblInfoBookMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblInfoBookMouseClicked
+        // TODO add your handling code here:
+        current = tblInfoBook.getSelectedRow();
+        displayForm();
+    }//GEN-LAST:event_tblInfoBookMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -445,14 +456,14 @@ public class LibraryManagement extends javax.swing.JFrame {
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnDel;
     private javax.swing.JButton btnExit;
+    private javax.swing.JButton btnFirst;
+    private javax.swing.JButton btnLast;
     private javax.swing.JButton btnNew;
+    private javax.swing.JButton btnNext;
+    private javax.swing.JButton btnPrev;
     private javax.swing.JButton btnSearch;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JComboBox<String> cboType;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -477,13 +488,12 @@ public class LibraryManagement extends javax.swing.JFrame {
     // chinh lai user(neu co)
     String user = "sa";
     // chinh lai pass(neu co) 
-    String password = "1A@gmail.com";
+    String password = "123";
     String url = "jdbc:sqlserver://localhost:1433;databaseName=QLThuVien";
 
     Connection conn = null;
-    
+
     int current = 0;
-    boolean newFlag = false;
 
     DefaultTableModel tblModel;
 
@@ -560,34 +570,46 @@ public class LibraryManagement extends javax.swing.JFrame {
     }
 
     private void addBook() {
-        
+        if (txtID.getText().isEmpty()) {
+            return;
+        }
         if (!arrBookId.contains(txtID.getText())) {
             try {
+                int amount = Integer.parseInt(txtAmount.getText());
                 Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
                 conn = DriverManager.getConnection(url, user, password);
                 String sql = "INSERT INTO Book values (?,?,?,?,?)";
                 PreparedStatement st = conn.prepareStatement(sql);
-                st.setString(1, txtID.getText());
-                st.setString(2, txtNameBook.getText());
-                st.setString(3, txtAuthor.getText());
-                st.setString(4, txtaDescription.getText());
-                st.setString(5, txtAmount.getText());
+                st.setString(1, txtID.getText().trim());
+                st.setString(2, txtNameBook.getText().trim());
+                st.setString(3, txtAuthor.getText().trim());
+                st.setString(4, txtaDescription.getText().trim());
+                st.setString(5, Integer.toString(amount).trim());
                 st.executeUpdate();
                 JOptionPane.showMessageDialog(this, "Thêm mới thành công!");
                 conn.close();
                 loadData();
                 fillToTable();
+            } catch (NumberFormatException nfe) {
+                JOptionPane.showMessageDialog(this, "Mời bạn nhập đúng giá trị số lượng!");
+                txtAmount.setText("");
             } catch (Exception e) {
                 System.out.println(e.getMessage());
                 JOptionPane.showMessageDialog(this, "Error");
             }
             return;
         }
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
         JOptionPane.showMessageDialog(this, "Thông tin về sách đã tồn tại!");
     }
 
     private void delBook() {
-       
+        if (txtID.getText().isEmpty()) {
+            return;
+        }
         if (arrBookId.contains(txtID.getText())) {
             try {
                 Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
@@ -600,6 +622,7 @@ public class LibraryManagement extends javax.swing.JFrame {
                 conn.close();
                 loadData();
                 fillToTable();
+                arrBookId.remove(txtID.getText());
                 newBook();
             } catch (Exception e) {
                 System.out.println(e.getMessage());
@@ -611,23 +634,29 @@ public class LibraryManagement extends javax.swing.JFrame {
     }
 
     private void updateBook() {
-        
+        if (txtID.getText().isEmpty()) {
+            return;
+        }
         if (arrBookId.contains(txtID.getText())) {
             try {
+                int amount = Integer.parseInt(txtAmount.getText());
                 Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
                 conn = DriverManager.getConnection(url, user, password);
                 String sql = "UPDATE Book SET NameBook = ?, Author = ?, Descriptions = ?, Amount = ? WHERE IDBook = ?";
                 PreparedStatement st = conn.prepareStatement(sql);
-                st.setString(1, txtNameBook.getText());
-                st.setString(2, txtAuthor.getText());
-                st.setString(3, txtaDescription.getText());
-                st.setString(4, txtAmount.getText());
-                st.setString(5, txtID.getText());
+                st.setString(1, txtNameBook.getText().trim());
+                st.setString(2, txtAuthor.getText().trim());
+                st.setString(3, txtaDescription.getText().trim());
+                st.setString(4, txtAmount.getText().trim());
+                st.setString(5, txtID.getText().trim());
                 st.executeUpdate();
                 JOptionPane.showMessageDialog(this, "Cập nhật thành công!");
                 conn.close();
                 loadData();
                 fillToTable();
+            } catch (NumberFormatException nfe) {
+                JOptionPane.showMessageDialog(this, "Mời bạn nhập đúng giá trị số lượng!");
+                txtAmount.setText("");
             } catch (Exception e) {
                 System.out.println(e.getMessage());
                 JOptionPane.showMessageDialog(this, "Error");
