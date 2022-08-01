@@ -558,7 +558,6 @@ public class LibraryManagement extends javax.swing.JFrame {
             System.exit(0);
         }
     }
-    
 
     private void addBook() {
         
