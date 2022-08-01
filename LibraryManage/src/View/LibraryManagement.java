@@ -583,6 +583,7 @@ public class LibraryManagement extends javax.swing.JFrame {
             }
             return;
         }
+        
         JOptionPane.showMessageDialog(this, "Thông tin về sách đã tồn tại!");
     }
 
