@@ -245,13 +245,10 @@ public class DangNhap extends javax.swing.JFrame {
             conn.close();
         } catch (Exception ex) {
             ex.printStackTrace();
-        }
-        
+        } 
     }
-    
-    
+      
     public void checkAccount(){
-        
         for(Account acc : arrAcc){
             if(txtUsername.getText().equals(acc.getUserName()) && txtPassword.getText().equals(acc.getPassword())){
                 JOptionPane.showMessageDialog(this, "Dang nhap thanh cong");
