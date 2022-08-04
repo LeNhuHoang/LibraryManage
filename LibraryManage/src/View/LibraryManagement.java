@@ -398,6 +398,9 @@ public class LibraryManagement extends javax.swing.JFrame {
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
         // TODO add your handling code here:
         exit();
+        
+        
+        //Hejkhkjklh
     }//GEN-LAST:event_btnExitActionPerformed
 
     /**
@@ -583,9 +586,11 @@ public class LibraryManagement extends javax.swing.JFrame {
             }
             return;
         }
+        
         JOptionPane.showMessageDialog(this, "Thông tin về sách đã tồn tại!");
     }
 
+    
     private void delBook() {
        
         if (arrBookId.contains(txtID.getText())) {
