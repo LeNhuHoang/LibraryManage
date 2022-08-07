@@ -41,6 +41,7 @@ public class DangNhap extends javax.swing.JFrame {
         chkRemember = new javax.swing.JCheckBox();
         btnLogin = new javax.swing.JButton();
         txtPassword = new javax.swing.JPasswordField();
+        btnCancel = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -72,6 +73,15 @@ public class DangNhap extends javax.swing.JFrame {
             }
         });
 
+        btnCancel.setFont(new java.awt.Font("Liberation Sans", 1, 24)); // NOI18N
+        btnCancel.setForeground(new java.awt.Color(255, 153, 153));
+        btnCancel.setText("Cancel");
+        btnCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -90,8 +100,11 @@ public class DangNhap extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btnLogin)
-                                    .addComponent(chkRemember)))
+                                    .addComponent(chkRemember)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(btnLogin)
+                                        .addGap(49, 49, 49)
+                                        .addComponent(btnCancel))))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(13, 13, 13)
                                 .addComponent(txtPassword)))))
@@ -113,7 +126,9 @@ public class DangNhap extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(chkRemember)
                 .addGap(18, 18, 18)
-                .addComponent(btnLogin)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnLogin)
+                    .addComponent(btnCancel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(27, Short.MAX_VALUE))
         );
 
@@ -173,6 +188,11 @@ public class DangNhap extends javax.swing.JFrame {
         loadData();
     }//GEN-LAST:event_formWindowOpened
 
+    private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_btnCancelActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -212,6 +232,7 @@ public class DangNhap extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnLogin;
     private javax.swing.JCheckBox chkRemember;
     private javax.swing.JLabel jLabel1;
