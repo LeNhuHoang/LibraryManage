@@ -248,7 +248,7 @@ public class LibraryManagement extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(36, 36, 36)))
-                .addContainerGap(7, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -324,6 +324,11 @@ public class LibraryManagement extends javax.swing.JFrame {
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
+            }
+        });
+        tblInfoBook.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblInfoBookMouseClicked(evt);
             }
         });
         jScrollPane2.setViewportView(tblInfoBook);
@@ -402,6 +407,12 @@ public class LibraryManagement extends javax.swing.JFrame {
         
         //Hejkhkjklh
     }//GEN-LAST:event_btnExitActionPerformed
+
+    private void tblInfoBookMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblInfoBookMouseClicked
+        // TODO add your handling code here:
+        current = tblInfoBook.getSelectedRow();
+        displayForm();
+    }//GEN-LAST:event_tblInfoBookMouseClicked
 
     /**
      * @param args the command line arguments
@@ -517,7 +528,7 @@ public class LibraryManagement extends javax.swing.JFrame {
     public void fillToTable() {
         tblModel.setRowCount(0);
         for (Book b : arrBook) {
-            Object[] rowData = {b.getID(), b.getName(), b.getAuthor(), b.getType(), b.getDescription(), b.getAmount()};
+            Object[] rowData = {b.getID(), b.getName(), b.getAuthor(), b.getType(), b.getDescription(), b.getAmount()+""};
             tblModel.addRow(rowData);
         }
     }
@@ -566,6 +577,7 @@ public class LibraryManagement extends javax.swing.JFrame {
         
         if (!arrBookId.contains(txtID.getText())) {
             try {
+                Integer amount= Integer.parseInt(txtAmount.getText());
                 Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
                 conn = DriverManager.getConnection(url, user, password);
                 String sql = "INSERT INTO Book values (?,?,?,?,?)";
@@ -574,7 +586,7 @@ public class LibraryManagement extends javax.swing.JFrame {
                 st.setString(2, txtNameBook.getText());
                 st.setString(3, txtAuthor.getText());
                 st.setString(4, txtaDescription.getText());
-                st.setString(5, txtAmount.getText());
+                st.setInt(5, amount);
                 st.executeUpdate();
                 JOptionPane.showMessageDialog(this, "Thêm mới thành công!");
                 conn.close();
@@ -590,7 +602,6 @@ public class LibraryManagement extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, "Thông tin về sách đã tồn tại!");
     }
 
-    
     private void delBook() {
        
         if (arrBookId.contains(txtID.getText())) {
