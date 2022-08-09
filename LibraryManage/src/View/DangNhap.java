@@ -161,26 +161,22 @@ public class DangNhap extends javax.swing.JFrame {
 //        }else{
 //            JOptionPane.showMessageDialog(this, "Bạn đã nhập sai mật khẩu hoặc tài khoản! Mời bạn nhập lại");
 //        }
-        int i = 0;
-        for(Account acc : arrAcc){
-            if(username.equals(acc.getUserName()) && password.equals(acc.getPassword())){
-                i = 0;
-              
+        if(Login(txtUsername.getText(),txtPassword.getText()) == true){
+            JOptionPane.showMessageDialog(this, "Đăng nhập thành công");
+            if(this.role.equalsIgnoreCase("NV")){
+                LibraryManagement lm = new LibraryManagement();
+                lm.setVisible(true);
             }else{
-                i = 1;
+                LibrarySearch ls = new LibrarySearch();
+                ls.setVisible(true);
             }
-                
-        }
-        if(i == 0 ){
-            JOptionPane.showMessageDialog(this, "Đăng nhập thành công ");
-            LibraryManagement lm = new LibraryManagement();
-            lm.setVisible(true);
-            this.setVisible(false);
-        }else{
+        }   
+        else{
             JOptionPane.showMessageDialog(this, "Bạn đã nhập sai mật khẩu hoặc tài khoản! Mời bạn nhập lại");
-            txtPassword.setText("");
             txtUsername.setText("");
+            txtPassword.setText("");
         }
+            
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
@@ -249,6 +245,8 @@ public class DangNhap extends javax.swing.JFrame {
     String password = "1A@gmail.com";
     Connection conn = null;
     
+    String role;
+    
     public void loadData(){
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
@@ -277,5 +275,15 @@ public class DangNhap extends javax.swing.JFrame {
             }   
         }
         
+    }
+    
+    public boolean Login(String username, String password){
+        for(Account acc : arrAcc){
+            if(acc.getUserName().equals(username) && acc.getPassword().equals(password)){
+                this.role = acc.getRole();
+                return true;
+            }
+        }
+        return false;
     }
 }
