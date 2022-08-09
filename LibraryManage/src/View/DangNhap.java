@@ -273,8 +273,7 @@ public class DangNhap extends javax.swing.JFrame {
         for(Account acc : arrAcc){
             if(txtUsername.getText().equals(acc.getUserName()) && txtPassword.getText().equals(acc.getPassword())){
                 JOptionPane.showMessageDialog(this, "Dang nhap thanh cong");
-                new LibraryManagement();
-                
+ 
             }   
         }
         

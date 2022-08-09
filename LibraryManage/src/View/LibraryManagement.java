@@ -7,6 +7,8 @@ package View;
 import Object.Book;
 import java.util.ArrayList;
 import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -315,11 +317,11 @@ public class LibraryManagement extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Name", "Author", "Type", "Description", "Amount"
+                "ID", "Name", "Author", "Type", "Description", "Amount"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, true, true
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -514,14 +516,15 @@ public class LibraryManagement extends javax.swing.JFrame {
                 String name = rs.getString(2);
                 String author = rs.getString(3);
                 String type = rs.getString(4);
-                String description = rs.getString(4);
-                int amount = rs.getInt(5);
+                String description = rs.getString(5);
+                int amount = rs.getInt(6);
                 arrBook.add(new Book(id, name, author, type, description, amount));
                 arrBookId.add(id);
             }
             conn.close();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex);
+            ex.printStackTrace();
         }
     }
 
@@ -569,6 +572,11 @@ public class LibraryManagement extends javax.swing.JFrame {
 
     public void exit() {
         if (JOptionPane.showConfirmDialog(this, "Bạn có muốn thoát?") == JOptionPane.YES_OPTION) {
+            try {
+                conn.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
             System.exit(0);
         }
     }
@@ -580,21 +588,23 @@ public class LibraryManagement extends javax.swing.JFrame {
                 Integer amount= Integer.parseInt(txtAmount.getText());
                 Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
                 conn = DriverManager.getConnection(url, user, password);
-                String sql = "INSERT INTO Book values (?,?,?,?,?)";
+                String sql = "INSERT INTO Book values (?,?,?,?,?,?)";
                 PreparedStatement st = conn.prepareStatement(sql);
                 st.setString(1, txtID.getText());
                 st.setString(2, txtNameBook.getText());
                 st.setString(3, txtAuthor.getText());
-                st.setString(4, txtaDescription.getText());
-                st.setInt(5, amount);
+                st.setString(4, cboType.getSelectedItem() + "");
+                st.setString(5, txtaDescription.getText());
+                st.setInt(6, amount);
                 st.executeUpdate();
                 JOptionPane.showMessageDialog(this, "Thêm mới thành công!");
-                conn.close();
+                
                 loadData();
                 fillToTable();
             } catch (Exception e) {
                 System.out.println(e.getMessage());
                 JOptionPane.showMessageDialog(this, "Error");
+                e.printStackTrace();
             }
             return;
         }
@@ -602,8 +612,7 @@ public class LibraryManagement extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, "Thông tin về sách đã tồn tại!");
     }
 
-    private void delBook() {
-       
+    private void delBook() { 
         if (arrBookId.contains(txtID.getText())) {
             try {
                 Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
@@ -613,7 +622,7 @@ public class LibraryManagement extends javax.swing.JFrame {
                 st.setString(1, txtID.getText());
                 st.executeUpdate();
                 JOptionPane.showMessageDialog(this, "Xóa thành công!");
-                conn.close();
+              
                 loadData();
                 fillToTable();
                 newBook();
@@ -641,12 +650,13 @@ public class LibraryManagement extends javax.swing.JFrame {
                 st.setString(5, txtID.getText());
                 st.executeUpdate();
                 JOptionPane.showMessageDialog(this, "Cập nhật thành công!");
-                conn.close();
+               
                 loadData();
                 fillToTable();
             } catch (Exception e) {
-                System.out.println(e.getMessage());
+                
                 JOptionPane.showMessageDialog(this, "Error");
+                e.printStackTrace();
             }
             return;
         }

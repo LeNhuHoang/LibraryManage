@@ -24,6 +24,8 @@ CREATE TABLE UserAccount
 )
 GO
 
+DROP TABLE Book
+
 INSERT INTO Book
 VALUES
 ('B001', N'Đắc nhân tâm', 'DALE CARNEGIE', 'Self-Help', N'Là tác phẩm nổi tiếng nhất thế giới và có tầm ảnh hưởng mạnh mẽ nhất mọi thời đại',100)
