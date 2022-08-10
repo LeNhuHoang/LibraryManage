@@ -48,10 +48,10 @@ public class LibraryManagement extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         txtaDescription = new javax.swing.JTextArea();
         lblPicture = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        btnFirst = new javax.swing.JButton();
+        btnPre = new javax.swing.JButton();
+        btnNext = new javax.swing.JButton();
+        btnEnd = new javax.swing.JButton();
         Author1 = new javax.swing.JLabel();
         cboType = new javax.swing.JComboBox<>();
         Author2 = new javax.swing.JLabel();
@@ -130,13 +130,33 @@ public class LibraryManagement extends javax.swing.JFrame {
 
         lblPicture.setBackground(new java.awt.Color(204, 204, 204));
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icon_java/old/vidu/Button-First-icon.png"))); // NOI18N
+        btnFirst.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icon_java/old/vidu/Button-First-icon.png"))); // NOI18N
+        btnFirst.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFirstActionPerformed(evt);
+            }
+        });
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icon_java/old/vidu/Button-Rewind-icon.png"))); // NOI18N
+        btnPre.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icon_java/old/vidu/Button-Rewind-icon.png"))); // NOI18N
+        btnPre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPreActionPerformed(evt);
+            }
+        });
 
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icon_java/old/vidu/Button-Forward-icon.png"))); // NOI18N
+        btnNext.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icon_java/old/vidu/Button-Forward-icon.png"))); // NOI18N
+        btnNext.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNextActionPerformed(evt);
+            }
+        });
 
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icon_java/old/vidu/Button-Last-icon.png"))); // NOI18N
+        btnEnd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icon_java/old/vidu/Button-Last-icon.png"))); // NOI18N
+        btnEnd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEndActionPerformed(evt);
+            }
+        });
 
         Author1.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
         Author1.setForeground(new java.awt.Color(255, 153, 153));
@@ -231,13 +251,13 @@ public class LibraryManagement extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(lblPicture, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jButton1)
+                                .addComponent(btnFirst)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton2)
+                                .addComponent(btnPre)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton3)
+                                .addComponent(btnNext)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton4))
+                                .addComponent(btnEnd))
                             .addComponent(txtChange, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -294,10 +314,10 @@ public class LibraryManagement extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton2)
-                            .addComponent(jButton3)
-                            .addComponent(jButton1)
-                            .addComponent(jButton4))
+                            .addComponent(btnPre)
+                            .addComponent(btnNext)
+                            .addComponent(btnFirst)
+                            .addComponent(btnEnd))
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                             .addComponent(Author2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(2, 2, 2)))
@@ -405,8 +425,7 @@ public class LibraryManagement extends javax.swing.JFrame {
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
         // TODO add your handling code here:
         exit();
-        
-        
+
         //Hejkhkjklh
     }//GEN-LAST:event_btnExitActionPerformed
 
@@ -415,6 +434,40 @@ public class LibraryManagement extends javax.swing.JFrame {
         current = tblInfoBook.getSelectedRow();
         displayForm();
     }//GEN-LAST:event_tblInfoBookMouseClicked
+
+    private void btnFirstActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFirstActionPerformed
+        // TODO add your handling code here:
+        current = 0;
+        displayForm();
+    }//GEN-LAST:event_btnFirstActionPerformed
+
+    private void btnEndActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEndActionPerformed
+        // TODO add your handling code here:
+        current = arrBook.size()-1;
+        displayForm();
+    }//GEN-LAST:event_btnEndActionPerformed
+
+    private void btnPreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPreActionPerformed
+        // TODO add your handling code here:
+        try{
+            current--;
+            displayForm();
+            
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(this, "Ban da o dau danh sach");
+        }
+    }//GEN-LAST:event_btnPreActionPerformed
+
+    private void btnNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextActionPerformed
+        // TODO add your handling code here:
+        try{
+            current++;
+            displayForm();
+            
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(this, "Ban da o cuoi danh sach");
+        }
+    }//GEN-LAST:event_btnNextActionPerformed
 
     /**
      * @param args the command line arguments
@@ -460,15 +513,15 @@ public class LibraryManagement extends javax.swing.JFrame {
     private javax.swing.JLabel Author2;
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnDel;
+    private javax.swing.JButton btnEnd;
     private javax.swing.JButton btnExit;
+    private javax.swing.JButton btnFirst;
     private javax.swing.JButton btnNew;
+    private javax.swing.JButton btnNext;
+    private javax.swing.JButton btnPre;
     private javax.swing.JButton btnSearch;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JComboBox<String> cboType;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -497,7 +550,7 @@ public class LibraryManagement extends javax.swing.JFrame {
     String url = "jdbc:sqlserver://localhost:1433;databaseName=QLThuVien";
 
     Connection conn = null;
-    
+
     int current = 0;
     boolean newFlag = false;
 
@@ -531,7 +584,7 @@ public class LibraryManagement extends javax.swing.JFrame {
     public void fillToTable() {
         tblModel.setRowCount(0);
         for (Book b : arrBook) {
-            Object[] rowData = {b.getID(), b.getName(), b.getAuthor(), b.getType(), b.getDescription(), b.getAmount()+""};
+            Object[] rowData = {b.getID(), b.getName(), b.getAuthor(), b.getType(), b.getDescription(), b.getAmount() + ""};
             tblModel.addRow(rowData);
         }
     }
@@ -582,10 +635,10 @@ public class LibraryManagement extends javax.swing.JFrame {
     }
 
     private void addBook() {
-        
+
         if (!arrBookId.contains(txtID.getText())) {
             try {
-                Integer amount= Integer.parseInt(txtAmount.getText());
+                Integer amount = Integer.parseInt(txtAmount.getText());
                 Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
                 conn = DriverManager.getConnection(url, user, password);
                 String sql = "INSERT INTO Book values (?,?,?,?,?,?)";
@@ -598,7 +651,7 @@ public class LibraryManagement extends javax.swing.JFrame {
                 st.setInt(6, amount);
                 st.executeUpdate();
                 JOptionPane.showMessageDialog(this, "Thêm mới thành công!");
-                
+
                 loadData();
                 fillToTable();
             } catch (Exception e) {
@@ -608,11 +661,11 @@ public class LibraryManagement extends javax.swing.JFrame {
             }
             return;
         }
-        
+
         JOptionPane.showMessageDialog(this, "Thông tin về sách đã tồn tại!");
     }
 
-    private void delBook() { 
+    private void delBook() {
         if (arrBookId.contains(txtID.getText())) {
             try {
                 Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
@@ -622,7 +675,7 @@ public class LibraryManagement extends javax.swing.JFrame {
                 st.setString(1, txtID.getText());
                 st.executeUpdate();
                 JOptionPane.showMessageDialog(this, "Xóa thành công!");
-              
+
                 loadData();
                 fillToTable();
                 newBook();
@@ -636,7 +689,7 @@ public class LibraryManagement extends javax.swing.JFrame {
     }
 
     private void updateBook() {
-        
+
         if (arrBookId.contains(txtID.getText())) {
             try {
                 Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
@@ -650,11 +703,11 @@ public class LibraryManagement extends javax.swing.JFrame {
                 st.setString(5, txtID.getText());
                 st.executeUpdate();
                 JOptionPane.showMessageDialog(this, "Cập nhật thành công!");
-               
+
                 loadData();
                 fillToTable();
             } catch (Exception e) {
-                
+
                 JOptionPane.showMessageDialog(this, "Error");
                 e.printStackTrace();
             }
