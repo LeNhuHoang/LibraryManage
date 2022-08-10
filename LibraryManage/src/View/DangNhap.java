@@ -266,16 +266,6 @@ public class DangNhap extends javax.swing.JFrame {
             ex.printStackTrace();
         } 
     }
-      
-    public void checkAccount(){
-        for(Account acc : arrAcc){
-            if(txtUsername.getText().equals(acc.getUserName()) && txtPassword.getText().equals(acc.getPassword())){
-                JOptionPane.showMessageDialog(this, "Dang nhap thanh cong");
- 
-            }   
-        }
-        
-    }
     
     public boolean Login(String username, String password){
         for(Account acc : arrAcc){
