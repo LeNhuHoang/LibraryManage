@@ -152,15 +152,6 @@ public class DangNhap extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, sb.toString());
             return;
         }
-//        if(username.equals("user") && password.equals("user")) {
-//            JOptionPane.showMessageDialog(this, "Đăng nhập thành công ");
-//            if(chkRemember.isSelected()) {
-//                JOptionPane.showMessageDialog(this, "Tài khoản của bạn đã được ghi nhớ ");
-//            }
-//            checkAccount();
-//        }else{
-//            JOptionPane.showMessageDialog(this, "Bạn đã nhập sai mật khẩu hoặc tài khoản! Mời bạn nhập lại");
-//        }
         if(Login(txtUsername.getText(),txtPassword.getText()) == true){
             JOptionPane.showMessageDialog(this, "Đăng nhập thành công");
             if(this.role.equalsIgnoreCase("NV")){
@@ -175,6 +166,7 @@ public class DangNhap extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Bạn đã nhập sai mật khẩu hoặc tài khoản! Mời bạn nhập lại");
             txtUsername.setText("");
             txtPassword.setText("");
+            txtUsername.requestFocus();
         }
             
     }//GEN-LAST:event_btnLoginActionPerformed
@@ -240,9 +232,9 @@ public class DangNhap extends javax.swing.JFrame {
 
     ArrayList<Account> arrAcc = new ArrayList<>();
   
-    String url = "jdbc:sqlserver://localhost:1433;databaseName=QLThuVien";
+    String url = "jdbc:sqlserver://localhost:1433;databaseName=QLThuVien;encrypt=true;trustServerCertificate=true";
     String user = "sa";
-    String password = "1A@gmail.com";
+    String password = "123";
     Connection conn = null;
     
     String role;
@@ -251,6 +243,7 @@ public class DangNhap extends javax.swing.JFrame {
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             conn = DriverManager.getConnection(url, user, password);
+            System.out.println("Connect Succesfully!");
             Statement st = conn.createStatement();
             String sql = "SELECT * FROM UserAccount";
             ResultSet rs = st.executeQuery(sql);
@@ -261,6 +254,7 @@ public class DangNhap extends javax.swing.JFrame {
                 String role = rs.getString(3);
                 arrAcc.add(new Account(userN, pass, role));  
             }
+            System.out.println("Data loaded!");
             conn.close();
         } catch (Exception ex) {
             ex.printStackTrace();
