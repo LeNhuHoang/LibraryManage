@@ -166,11 +166,19 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="btnFirst" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
+<<<<<<< HEAD
                                   <Component id="btnPrev" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="btnNext" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="btnLast" min="-2" max="-2" attributes="0"/>
+=======
+                                  <Component id="btnPre" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="btnNext" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="btnEnd" min="-2" max="-2" attributes="0"/>
+>>>>>>> be490f73c75d33c599d29af531e7f41da33eb628
                               </Group>
                               <Component id="txtChange" max="32767" attributes="0"/>
                           </Group>
@@ -246,10 +254,17 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="103" alignment="0" groupAlignment="0" attributes="0">
                           <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+<<<<<<< HEAD
                               <Component id="btnPrev" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="btnNext" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="btnFirst" min="-2" max="-2" attributes="0"/>
                               <Component id="btnLast" min="-2" max="-2" attributes="0"/>
+=======
+                              <Component id="btnPre" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnNext" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnFirst" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnEnd" min="-2" max="-2" attributes="0"/>
+>>>>>>> be490f73c75d33c599d29af531e7f41da33eb628
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
                               <Component id="Author2" min="-2" pref="27" max="-2" attributes="0"/>
@@ -343,13 +358,23 @@
               <Image iconType="3" name="/icon/icon_java/old/vidu/Button-First-icon.png"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnFirstActionPerformed"/>
+          </Events>
         </Component>
+<<<<<<< HEAD
         <Component class="javax.swing.JButton" name="btnPrev">
+=======
+        <Component class="javax.swing.JButton" name="btnPre">
+>>>>>>> be490f73c75d33c599d29af531e7f41da33eb628
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/icon/icon_java/old/vidu/Button-Rewind-icon.png"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPreActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnNext">
           <Properties>
@@ -357,13 +382,23 @@
               <Image iconType="3" name="/icon/icon_java/old/vidu/Button-Forward-icon.png"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnNextActionPerformed"/>
+          </Events>
         </Component>
+<<<<<<< HEAD
         <Component class="javax.swing.JButton" name="btnLast">
+=======
+        <Component class="javax.swing.JButton" name="btnEnd">
+>>>>>>> be490f73c75d33c599d29af531e7f41da33eb628
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/icon/icon_java/old/vidu/Button-Last-icon.png"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEndActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="Author1">
           <Properties>
