@@ -635,7 +635,6 @@ public class LibraryManagement extends javax.swing.JFrame {
     }
 
     private void addBook() {
-
         if (!arrBookId.contains(txtID.getText())) {
             try {
                 Integer amount = Integer.parseInt(txtAmount.getText());

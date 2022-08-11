@@ -152,15 +152,6 @@ public class DangNhap extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, sb.toString());
             return;
         }
-//        if(username.equals("user") && password.equals("user")) {
-//            JOptionPane.showMessageDialog(this, "Đăng nhập thành công ");
-//            if(chkRemember.isSelected()) {
-//                JOptionPane.showMessageDialog(this, "Tài khoản của bạn đã được ghi nhớ ");
-//            }
-//            checkAccount();
-//        }else{
-//            JOptionPane.showMessageDialog(this, "Bạn đã nhập sai mật khẩu hoặc tài khoản! Mời bạn nhập lại");
-//        }
         if(Login(txtUsername.getText(),txtPassword.getText()) == true){
             JOptionPane.showMessageDialog(this, "Đăng nhập thành công");
             if(this.role.equalsIgnoreCase("NV")){
