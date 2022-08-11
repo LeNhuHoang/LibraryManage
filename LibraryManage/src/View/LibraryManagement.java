@@ -49,9 +49,15 @@ public class LibraryManagement extends javax.swing.JFrame {
         txtaDescription = new javax.swing.JTextArea();
         lblPicture = new javax.swing.JLabel();
         btnFirst = new javax.swing.JButton();
+<<<<<<< HEAD
+        btnPrev = new javax.swing.JButton();
+        btnNext = new javax.swing.JButton();
+        btnLast = new javax.swing.JButton();
+=======
         btnPre = new javax.swing.JButton();
         btnNext = new javax.swing.JButton();
         btnEnd = new javax.swing.JButton();
+>>>>>>> be490f73c75d33c599d29af531e7f41da33eb628
         Author1 = new javax.swing.JLabel();
         cboType = new javax.swing.JComboBox<>();
         Author2 = new javax.swing.JLabel();
@@ -131,6 +137,14 @@ public class LibraryManagement extends javax.swing.JFrame {
         lblPicture.setBackground(new java.awt.Color(204, 204, 204));
 
         btnFirst.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icon_java/old/vidu/Button-First-icon.png"))); // NOI18N
+<<<<<<< HEAD
+
+        btnPrev.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icon_java/old/vidu/Button-Rewind-icon.png"))); // NOI18N
+
+        btnNext.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icon_java/old/vidu/Button-Forward-icon.png"))); // NOI18N
+
+        btnLast.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icon_java/old/vidu/Button-Last-icon.png"))); // NOI18N
+=======
         btnFirst.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnFirstActionPerformed(evt);
@@ -157,6 +171,7 @@ public class LibraryManagement extends javax.swing.JFrame {
                 btnEndActionPerformed(evt);
             }
         });
+>>>>>>> be490f73c75d33c599d29af531e7f41da33eb628
 
         Author1.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
         Author1.setForeground(new java.awt.Color(255, 153, 153));
@@ -253,11 +268,19 @@ public class LibraryManagement extends javax.swing.JFrame {
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(btnFirst)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+<<<<<<< HEAD
+                                .addComponent(btnPrev)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnNext)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnLast))
+=======
                                 .addComponent(btnPre)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnNext)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnEnd))
+>>>>>>> be490f73c75d33c599d29af531e7f41da33eb628
                             .addComponent(txtChange, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -314,10 +337,17 @@ public class LibraryManagement extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+<<<<<<< HEAD
+                            .addComponent(btnPrev)
+                            .addComponent(btnNext)
+                            .addComponent(btnFirst)
+                            .addComponent(btnLast))
+=======
                             .addComponent(btnPre)
                             .addComponent(btnNext)
                             .addComponent(btnFirst)
                             .addComponent(btnEnd))
+>>>>>>> be490f73c75d33c599d29af531e7f41da33eb628
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                             .addComponent(Author2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(2, 2, 2)))
@@ -516,9 +546,16 @@ public class LibraryManagement extends javax.swing.JFrame {
     private javax.swing.JButton btnEnd;
     private javax.swing.JButton btnExit;
     private javax.swing.JButton btnFirst;
+<<<<<<< HEAD
+    private javax.swing.JButton btnLast;
+    private javax.swing.JButton btnNew;
+    private javax.swing.JButton btnNext;
+    private javax.swing.JButton btnPrev;
+=======
     private javax.swing.JButton btnNew;
     private javax.swing.JButton btnNext;
     private javax.swing.JButton btnPre;
+>>>>>>> be490f73c75d33c599d29af531e7f41da33eb628
     private javax.swing.JButton btnSearch;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JComboBox<String> cboType;
@@ -546,8 +583,8 @@ public class LibraryManagement extends javax.swing.JFrame {
     // chinh lai user(neu co)
     String user = "sa";
     // chinh lai pass(neu co) 
-    String password = "1A@gmail.com";
-    String url = "jdbc:sqlserver://localhost:1433;databaseName=QLThuVien";
+    String password = "123";
+    String url = "jdbc:sqlserver://localhost:1433;databaseName=QLThuVien;encrypt=true;trustServerCertificate=true";
 
     Connection conn = null;
 
@@ -621,6 +658,7 @@ public class LibraryManagement extends javax.swing.JFrame {
         cboType.setSelectedIndex(0);
         txtaDescription.setText("");
         txtAmount.setText("");
+        tblInfoBook.clearSelection();
     }
 
     public void exit() {

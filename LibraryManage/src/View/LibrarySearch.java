@@ -24,6 +24,7 @@ public class LibrarySearch extends javax.swing.JFrame {
      */
     public LibrarySearch() {
         initComponents();
+        setLocationRelativeTo(null);
         tblModel = (DefaultTableModel) tblinfor.getModel();
         loadData();
         fillToTable();
@@ -103,23 +104,23 @@ public class LibrarySearch extends javax.swing.JFrame {
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel2.setText("Name");
 
-        txtNameBook.setEnabled(false);
+        txtNameBook.setEditable(false);
 
         Author.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
         Author.setForeground(new java.awt.Color(255, 153, 153));
         Author.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         Author.setText("Author");
 
-        txtAuthor.setEnabled(false);
+        txtAuthor.setEditable(false);
 
         jLabel6.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 153, 153));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel6.setText("Description");
 
+        txtaDescription.setEditable(false);
         txtaDescription.setColumns(20);
         txtaDescription.setRows(5);
-        txtaDescription.setEnabled(false);
         txtaDescription.setPreferredSize(new java.awt.Dimension(274, 94));
         jScrollPane1.setViewportView(txtaDescription);
 
@@ -144,7 +145,7 @@ public class LibrarySearch extends javax.swing.JFrame {
         Author2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         Author2.setText("Amount");
 
-        txtAmount.setEnabled(false);
+        txtAmount.setEditable(false);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -365,13 +366,13 @@ public class LibrarySearch extends javax.swing.JFrame {
 
     String user = "sa";
     // chinh lai pass(neu co) 
-    String password = "1A@gmail.com";
-    String url = "jdbc:sqlserver://localhost:1433;databaseName=QLThuVien";
+    String password = "123";
+    String url = "jdbc:sqlserver://localhost:1433;databaseName=QLThuVien;encrypt=true;trustServerCertificate=true";
 
     Connection conn = null;
 
     DefaultTableModel tblModel;
-    
+
     int current = 0;
 
     public void loadData() {
@@ -398,21 +399,21 @@ public class LibrarySearch extends javax.swing.JFrame {
             ex.printStackTrace();
         }
     }
-    
+
     public void fillToTable() {
         tblModel.setRowCount(0);
         for (Book b : arrBook) {
-            Object[] rowData = {b.getID(), b.getName(), b.getAuthor(), b.getType(), b.getDescription(), b.getAmount()+""};
+            Object[] rowData = {b.getID(), b.getName(), b.getAuthor(), b.getType(), b.getDescription(), b.getAmount() + ""};
             tblModel.addRow(rowData);
         }
     }
-    
+
     public void search() {
         if (arrBook.size() == 0) {
             return;
         }
         for (int i = 0; i < arrBook.size(); i++) {
-            if (txtSearch.getText().equalsIgnoreCase(arrBook.get(i).getID()) || txtSearch.getText().equalsIgnoreCase(arrBook.get(i).getName())) {
+            if (txtSearch.getText().trim().equalsIgnoreCase(arrBook.get(i).getID()) || txtSearch.getText().trim().equalsIgnoreCase(arrBook.get(i).getName())) {
                 current = i;
                 displayForm();
                 txtSearch.setText("");
@@ -421,7 +422,7 @@ public class LibrarySearch extends javax.swing.JFrame {
         }
         JOptionPane.showMessageDialog(this, "Không tìm thấy thông tin sách!");
     }
-    
+
     public void displayForm() {
         Book book = arrBook.get(current);
         txtNameBook.setText(book.getName());
