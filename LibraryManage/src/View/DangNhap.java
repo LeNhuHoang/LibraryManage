@@ -166,6 +166,7 @@ public class DangNhap extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Bạn đã nhập sai mật khẩu hoặc tài khoản! Mời bạn nhập lại");
             txtUsername.setText("");
             txtPassword.setText("");
+            txtUsername.requestFocus();
         }
             
     }//GEN-LAST:event_btnLoginActionPerformed
@@ -231,7 +232,7 @@ public class DangNhap extends javax.swing.JFrame {
 
     ArrayList<Account> arrAcc = new ArrayList<>();
   
-    String url = "jdbc:sqlserver://localhost:1433;databaseName=QLThuVien";
+    String url = "jdbc:sqlserver://localhost:1433;databaseName=QLThuVien;encrypt=true;trustServerCertificate=true";
     String user = "sa";
     String password = "1A@gmail.com";
     Connection conn = null;
@@ -242,6 +243,7 @@ public class DangNhap extends javax.swing.JFrame {
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             conn = DriverManager.getConnection(url, user, password);
+            System.out.println("Connect Succesfully!");
             Statement st = conn.createStatement();
             String sql = "SELECT * FROM UserAccount";
             ResultSet rs = st.executeQuery(sql);
@@ -252,6 +254,7 @@ public class DangNhap extends javax.swing.JFrame {
                 String role = rs.getString(3);
                 arrAcc.add(new Account(userN, pass, role));  
             }
+            System.out.println("Data loaded!");
             conn.close();
         } catch (Exception ex) {
             ex.printStackTrace();
